@@ -16,7 +16,7 @@ from .forms import CustomerForm, InvoiceForm, LineForm, AddressesForm
 
 class IndexView(TemplateView):
     template_name = 'index.html'
-    
+
 class Invoice_AjaxCRUD(InlineAjaxCRUD):
     model = Invoice
     base_model = Customer
@@ -25,7 +25,7 @@ class Invoice_AjaxCRUD(InlineAjaxCRUD):
     update_form = InvoiceForm
     fields = ['invoice_number', 'subtotal_iva',['registered'], 'sent', 'paid', 'date']
     title = _("Invoice")
-    
+
 class CustomerCRUD(CRUDView):
     model = Customer
     template_name_base='ccruds'  #customer cruds => ccruds
@@ -48,26 +48,26 @@ class CustomerCRUD(CRUDView):
     modelforms= custom_forms
     inlines=[Invoice_AjaxCRUD]
     cruds_url='lte'
-    
+
 class LineCRUD(CRUDView):
     model = Line
-    namespace = 'testapp' 
+    namespace = 'testapp'
     check_login = True
-    check_perms = True 
+    check_perms = True
     fields = '__all__'
     cruds_url= 'lte'
     related_fields = ['invoice']
-    views_available=['create', 'list', 'delete', 'update', 'detail']   
+    views_available=['create', 'list', 'delete', 'update', 'detail']
 
 class AddressCRUD(CRUDView):
     model = Addresses
     namespace = 'testapp'
     check_login = True
-    check_perms = True 
+    check_perms = True
     fields = '__all__'
     cruds_url= 'lte'
-    views_available=['create', 'list', 'delete', 'update', 'detail'] 
-    
+    views_available=['create', 'list', 'delete', 'update', 'detail']
+
 class Address_AjaxCRUD(InlineAjaxCRUD):
     model = Addresses
     base_model = Autor
@@ -108,7 +108,7 @@ class filterAddress(FormFilter):
 
 
 
-    
+
 class InvoiceCRUD(CRUDView):
     model = Invoice
     check_login = True
@@ -133,6 +133,6 @@ class InvoiceCRUD(CRUDView):
     views_available = ['create', 'list', 'update', 'detail']
     search_fields = ['description1__icontains']
     split_space_search = True
-    paginate_by = 1
+    paginate_by = 5
     paginate_position = 'Bottom' # Both | Bottom
     paginate_template = 'cruds/pagination/enumeration.html'

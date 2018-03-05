@@ -2,24 +2,24 @@
 {% load i18n %}
 {% load crud_tags %}
 
-{% block title %}{% trans "Update" %} {{ model_verbose_name_plural|lower }}{% endblock %}
+{% block title %}{% trans "Güncelle" %} {{ model_verbose_name_plural|lower }}{% endblock %}
 {% block body_class %}{{ model_verbose_name_plural|lower }}{% endblock body_class %}
 {% block page_name %}{{ model_verbose_name_plural }}{% endblock %}
-{% block page_description %}{% trans "Update" %} {{ model_verbose_name_plural|lower }}{% endblock %}
+{% block page_description %}{% trans "Güncelleme" %} {% endblock %}
 
 {% block content %}
 <div class="row">
-    <div class="col-md-8 col-md-offset-2">
+    <div class="col-md-10 col-md-offset-1">
     	{% if crud_perms.list %}
         <a href="{{ url_list }}{{getparams}}">
             <i class="fa fa-angle-double-left"></i>
-            {% trans "Back to" %} {{ model_verbose_name_plural|lower }}
+            {{ model_verbose_name_plural|lower }}{% trans " listesi" %}
         </a>
         {% endif %}
         <br /><br />
         <div class="box">
             <div class="box-header with-border">
-                <h3 class="box-title">{% trans "Edit" %} {{ model_verbose_name }}</h3>
+                <h3 class="box-title"> {{ model_verbose_name }}</h3>
             </div>
             {% include "cruds/_form.html" with action='update' %}
 
@@ -72,4 +72,3 @@
     </div>
 </div>
 {% endblock %}
-
